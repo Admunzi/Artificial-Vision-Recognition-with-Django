@@ -1,0 +1,35 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: snow;
+    height: 100vh;
+}
+.main {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    #top{
+        display: flex;
+        flex-grow: 1;
+        div {
+            flex-grow: 1; 
+        }
+        :nth-child(1) {
+            flex-grow: 5;
+            background-color: green;
+        }
+        :nth-child(2) {
+            flex-grow: 2;
+            background-color: blue;
+        }
+    }
+    #bottom{
+        background-color: red;
+        flex-grow: 1;
+        max-height: 30%;
+    }
+}

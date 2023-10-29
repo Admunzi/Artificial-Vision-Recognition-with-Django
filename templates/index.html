@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block scripts %}{% endblock scripts %}
+{% block title %}Recognition Objects{% endblock title %}
+{% block content %}
+<div class="main">
+    <div id="top">
+        <div>IZQ</div>
+        <div>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Upload</button>
+            </form>
+        </div>
+    </div>
+    <div id="bottom">
+        <h1>Show detected objects</h1>
+        {{ results }}
+    </div>
+ </div>
+{% endblock content %}
