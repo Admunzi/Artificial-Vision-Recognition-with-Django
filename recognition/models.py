@@ -4,7 +4,7 @@ from django import forms
 # Create your models here.
 class Video(models.Model):
     title = models.CharField(max_length=100)
-    video_file = models.FileField(upload_to='videos/no-process/')
+    video_file = models.FileField(upload_to='recognition/static/media_saved/videos')
     
     class Meta:
         app_label = 'recognition'

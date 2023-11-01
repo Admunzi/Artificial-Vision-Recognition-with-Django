@@ -1,49 +1,71 @@
 import os
 import cv2
 from ultralytics import YOLO
+import json
 
-def detect_objects_in_video(video_path):
-    # Carga el modelo YOLOv8 pre-entrenado
+def detect_objects_in_video(video_path, id):
     model = YOLO('yolov8n.pt')
 
-    # Abre el archivo de video
+    # Open video file
     cap = cv2.VideoCapture(video_path)
+    if not cap.isOpened():
+        raise IOError("Cannot open video file")
     
-    # Obtiene el ancho y alto del video
+    all_frames_detected_json = []
+    
+    
+    # SAVE VIDEO
+    """
     width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
     height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
-    
+
     video_name = os.path.splitext(os.path.basename(video_path))[0]
     
     # Define el codificador de video y el objeto VideoWriter
     fourcc = cv2.VideoWriter_fourcc(*'mp4v')
-    out = cv2.VideoWriter("videos/process/"+video_name+".mp4", fourcc, 20.0, (width, height))
+    out = cv2.VideoWriter(video_name+".mp4", fourcc, 20.0, (width, height))
+    """
     
-    # Bucle a través de los fotogramas de video
+    
+    # Each frame of video is detected
     while cap.isOpened():
-        # Lee un fotograma del video
+        # Read next frame
         success, frame = cap.read()
 
         if success:
             results = model.predict(frame, conf=0.2, verbose=False)
             
-            # Dibuja las cajas delimitadoras y etiquetas de detección en el fotograma
+            # Get bounding box coordinates
             for result in results:
                 boxes = result.boxes.cpu().numpy()
-                for box in boxes:     
+                frame_detected = []
+                for box in boxes:
                     r = box.xyxy[0].astype(int)
-                    # Draw name of object detected
-                    cv2.rectangle(frame, (r[0], r[1]), (r[2], r[3]), (0, 255, 0), 2)
-                    cv2.putText(frame, str(result.names[box.id()]), (r[0], r[1]),
-                                cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
+                    frame_detected.append([str(result.names[box.cls[0]]), int(r[0]), int(r[1]), int(r[2]), int(r[3])])
                     
+                    # SAVE VIDEO
+                    # cv2.rectangle(frame, (r[0], r[1]), (r[2], r[3]), (0, 255, 0), 2)
+
+            # SAVE VIDEO    
             # Escribe el fotograma con las detecciones en el nuevo video
-            out.write(frame)
-            
+            #out.write(frame)
+
+            all_frames_detected_json.append(frame_detected)
         else:
             break
 
-    # Libera el video
+    # Release video
     cap.release()
-    out.release()
+    
+    # SAVE VIDEO
+    #out.release()
     print("Video processed")
+    
+    save_detected_frames(all_frames_detected_json, id)
+
+def save_detected_frames(all_frames_detected_json, id):
+    all_frames_detected_json = json.dumps(all_frames_detected_json)
+    file_path = os.path.join('recognition/static/media_saved/json', f'detected_{id}.json')
+
+    with open(file_path, 'w') as file:
+        file.write(all_frames_detected_json)

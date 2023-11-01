@@ -1,10 +1,20 @@
 {% extends "base.html" %}
+{% load static %}
 {% block scripts %}{% endblock scripts %}
 {% block title %}Recognition Objects{% endblock title %}
 {% block content %}
+<script src="{% static 'js/main.js' %}"></script>
 <div class="main">
     <div id="top">
-        <div>IZQ</div>
+        <div>
+            <video id="myVideo" width="640">
+                <source src="{% static 'media_saved/videos/test1.mp4' %}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <canvas id="myCanvas" width="640" height="360"></canvas>
+            <button id="playOrStopVideo">Play / Stop</button>
+            <input type="range" id="rangeInput" min="0" max="100" step="1" value="0">
+        </div>
         <div>
             <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
@@ -15,7 +25,7 @@
     </div>
     <div id="bottom">
         <h1>Show detected objects</h1>
-        {{ results }}
+        <div id="detected_objects"></div>
     </div>
  </div>
 {% endblock content %}
