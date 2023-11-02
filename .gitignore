@@ -135,3 +135,7 @@ GitHub.sublime-settings
 !.vscode/launch.json 
 !.vscode/extensions.json 
 .history
+
+# Owned Code # 
+recognition/migrations
+recognition/static/media_saved
