@@ -7,12 +7,13 @@ def detect_objects_in_video(video_path, id):
     model = YOLO('yolov8n.pt')
 
     # Open video file
-    cap = cv2.VideoCapture(video_path)
-    if not cap.isOpened():
+    video = cv2.VideoCapture(video_path)
+    if not video.isOpened():
         raise IOError("Cannot open video file")
     
     all_frames_detected_json = []
-    
+    # Add vidoe fps to all frames
+    all_frames_detected_json.append(video.get(cv2.CAP_PROP_FPS))
     
     # SAVE VIDEO
     """
@@ -21,19 +22,18 @@ def detect_objects_in_video(video_path, id):
 
     video_name = os.path.splitext(os.path.basename(video_path))[0]
     
-    # Define el codificador de video y el objeto VideoWriter
     fourcc = cv2.VideoWriter_fourcc(*'mp4v')
     out = cv2.VideoWriter(video_name+".mp4", fourcc, 20.0, (width, height))
     """
     
     
     # Each frame of video is detected
-    while cap.isOpened():
+    while video.isOpened():
         # Read next frame
-        success, frame = cap.read()
+        success, frame = video.read()
 
         if success:
-            results = model.predict(frame, conf=0.2, verbose=False)
+            results = model.predict(frame, conf=0.3, verbose=False)
             
             # Get bounding box coordinates
             for result in results:
@@ -55,7 +55,7 @@ def detect_objects_in_video(video_path, id):
             break
 
     # Release video
-    cap.release()
+    video.release()
     
     # SAVE VIDEO
     #out.release()

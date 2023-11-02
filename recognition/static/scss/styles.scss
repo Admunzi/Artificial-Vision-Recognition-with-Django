@@ -1,3 +1,10 @@
+$black_color: #000000;
+$primary_color: #13212A;
+$secundary_color: #C4DAE3;
+$tertiary_color: #FDC23E;
+$white_color: #fff;
+
+
 * {
     margin: 0;
     padding: 0;
@@ -5,43 +12,86 @@
 }
 
 body{
-    background-color: snow;
+    background-color: $white_color;
     height: 100vh;
 }
 .main {
     display: flex;
     flex-direction: column;
     height: 100%;
+    margin: 10px;
+    gap: 20px;
     #top{
         display: flex;
         flex-grow: 1;
-        div {
-            flex-grow: 1; 
-        }
         >:nth-child(1) {
             display: flex;
             flex-direction: column; 
             flex-grow: 5;
-            background-color: green;
             video{
                 position: relative;
-                //width: 80%;
             }
             #myCanvas{
                 position: absolute;
-                top: 0;
-                left: 0;
+                top: 10;
+                left: 10;
                 z-index: 1;
             }
         }
         >:nth-child(2) {
             flex-grow: 2;
-            background-color: blue;
+            display: flex;
+            flex-direction: column;
+            gap: 50px;
+            justify-content: center;
+            >form{
+                margin-left: 5%;
+                margin-right: 5%;
+                box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+                padding: 20px;
+                background-color: $secundary_color;
+                border-radius: 15px;
+            }
+            #videos_to_detect{
+                display: flex;
+                flex-wrap: wrap;
+                gap: 40px;
+                justify-content: center;
+                box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+                margin-left: 5%;
+                margin-right: 5%;
+                padding-top: 20px;
+                padding-bottom: 20px;
+                background-color: $secundary_color;
+                border-radius: 15px;
+                div{
+                    display: flex;
+                    flex-direction: column;
+                }
+            }
         }
     }
     #bottom{
-        background-color: red;
         flex-grow: 1;
-        max-height: 30%;
+        display: flex;
+        width: 100%;
+        gap: 20px;
+        #detected_objects_ranking{
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            background-color: $secundary_color;
+            border-radius: 15px;
+            height: 300px;
+            width: 20%;
+        }
+        #detected_objects_panel{
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            background-color: $secundary_color;
+            border-radius: 15px;
+            width: 80%;
+            overflow: auto;
+            height: 300px;
+        }
     }
 }

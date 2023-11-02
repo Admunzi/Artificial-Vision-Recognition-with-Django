@@ -11,4 +11,7 @@ def index(request):
             detect_objects_in_video(video_path, instance.pk)
     else:
         form = VideoForm()
-    return render(request, 'index.html', {"form": form})
+    
+    detected_objs = Video.objects.all()
+        
+    return render(request, 'index.html', {"form": form, "detected_objs": detected_objs})
