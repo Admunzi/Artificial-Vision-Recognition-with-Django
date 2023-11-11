@@ -2,6 +2,7 @@ from django.db import models
 from django import forms
 import os
 
+
 # Create your models here.
 class Video(models.Model):
     title = models.CharField(max_length=100)
@@ -15,7 +16,8 @@ class Video(models.Model):
     class Meta:
         app_label = 'recognition'
         db_table = 'recognition_video'
-            
+
+
 class VideoForm(forms.ModelForm):
     class Meta:
         model = Video

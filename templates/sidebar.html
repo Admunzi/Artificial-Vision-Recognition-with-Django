@@ -1,0 +1,5 @@
+<nav class="sidenav">
+    <a href="{% url 'index' %}" class="{% if request.path == '/' %}active{% endif %}">Index</a>
+    <a href="{% url 'recognition' %}" class="{% if request.path == '/recognition' %}active{% endif %}">Recognition</a>
+    <a href="{% url 'some' %}" class="{% if request.path == '/some' %}active{% endif %}">Some</a>
+</nav>
