@@ -6,7 +6,7 @@ This is a repository to be able to recognize from a video the different objects 
 ## Demo video
 Here is a quick demo showcasing the capabilities of the project:
 
-
+https://github.com/Admunzi/Artificial-Vision-Recognition-with-Django/assets/72613258/dd59030a-2974-44e8-93af-96089c19b201
 
 ## Potential Applications
 - **Surveillance**: Enhance security measures by identifying and tracking objects in surveillance videos.
@@ -16,3 +16,6 @@ Here is a quick demo showcasing the capabilities of the project:
 - **Custom Applications**: Use the repository as a base for developing custom applications that require video object recognition.
 
 Feel free to explore the repository and contribute to this exciting project!
+
+
+
