@@ -1,0 +1,47 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #fff;
+  height: 100vh;
+  font-family: "Roboto", sans-serif;
+}
+
+nav {
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  position: fixed;
+  background-color: #13212A;
+  height: 100%;
+  overflow: auto;
+}
+
+nav a {
+  display: block;
+  color: #fff;
+  padding: 16px;
+  text-decoration: none;
+}
+
+nav :hover:not(.active) {
+  background-color: #C4DAE3;
+  color: #000000;
+}
+
+nav .active {
+  background-color: #FDC23E;
+  color: #13212A;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin-left: 200px;
+  padding: 20px;
+  gap: 20px;
+}/*# sourceMappingURL=base-styles.css.map */

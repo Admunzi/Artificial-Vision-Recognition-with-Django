@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Recognition Objects{% endblock title %}
+
+{% block extra_head %}
+    <link rel='stylesheet' href="{% static 'scss/recognition-styles.css' %}">
+    <script src="{% static 'js/recognition-main.js' %}"></script>
+{% endblock extra_head %}
+
+{% block content %}
+<div id="top">
+    <div>
+        <video id="myVideo" width="640" height="360" muted>
+            <source src="{% static 'media_saved/videos/cars-1.mp4' %}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <canvas id="myCanvas" width="640" height="360"></canvas>
+        <div>
+            <input type="range" id="rangeInput" min="0" max="100" step="1" value="0">
+            <img id="playOrStopVideo" src="{% static 'imgs/play_pause.png' %}" alt="Descripción de la imagen">
+        </div>
+    </div>
+    <div>
+        <div id="FormUploadVideoPanel">
+            <h2>Upload Video To Detect</h2>
+
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Upload</button>
+            </form>
+        </div>
+
+        <div id="VideosDetectedPanel">
+            <h2>Videos Detected</h2>
+            <div id="VideosDetectedContainer">
+                {% for detected in detected_objs %}
+                <div>
+                    {{ detected.title }}
+                    <video width="120">
+                        <source src="{% static 'media_saved/videos/'|add:detected.filename|safe %}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <span style="display:none">{{ detected.pk }}</span>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        
+    </div>
+</div>
+<div id="bottom">
+    <div id="detectedObjectsRankingPanel">
+        <h2>Ranking Labels</h2>
+        <div id="detectedObjectsRankingContainer"></div>
+    </div>
+    <div id="detectedObjectsPanel">
+        <h2>Detected Objects</h2>
+        <div id="detectedObjectsContainer"></div>
+    </div>
+</div>
+{% endblock content %}

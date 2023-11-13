@@ -139,6 +139,6 @@ GitHub.sublime-settings
 # Owned Code # 
 recognition/migrations
 recognition/static/media_saved
-recognition/static/scss/styles.css.map
-recognition/static/scss/styles.scss
+*.css.map
+*.scss
 recognition/yolov8n.pt

@@ -8,11 +8,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+        <link rel='stylesheet' href="{% static 'scss/base-styles.css' %}">
+
         <title>{% block title %}{% endblock title %}</title>
         {% block extra_head %}{% endblock extra_head %}
     </head>
     <body>
-        {% include 'sidebar.html' %}
-        {% block content %}{% endblock %}
+        {% include 'sidenav.html' %}
+        <div class="main">
+            {% block content %}{% endblock %}
+        </div>
         {% block scripts %}{% endblock %}
     </body>
