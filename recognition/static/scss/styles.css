@@ -107,6 +107,7 @@ nav .active {
   display: flex;
   overflow: auto;
   gap: 20px;
+  flex-wrap: wrap;
 }
 .main #top > :nth-child(2) #VideosDetectedPanel #VideosDetectedContainer div {
   display: flex;

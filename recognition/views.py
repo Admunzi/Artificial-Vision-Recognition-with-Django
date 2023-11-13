@@ -1,11 +1,6 @@
 from django.shortcuts import render
 from .models import VideoForm, Video
-from yolo8.yolo8_detection import detect_objects_in_video
-
-
-def index(request):
-    return render(request, 'index.html')
-
+from .utils import detect_objects_in_video
 
 def recognition(request):
     if request.method == 'POST':
@@ -20,7 +15,3 @@ def recognition(request):
     detected_objs = Video.objects.all()
         
     return render(request, 'recognition.html', {"form": form, "detected_objs": detected_objs})
-
-
-def some(request):
-    return render(request, 'some.html')
