@@ -5,10 +5,15 @@
 {% block title %}traffic_controller{% endblock title %}
 
 {% block extra_head %}
-<link rel='stylesheet' href="{% static 'scss/traffic_controller-styles.css' %}">
-<script src="{% static 'js/traffic_controller-main.js' %}"></script>
+    <link rel='stylesheet' href="{% static 'scss/traffic_controller-styles.css' %}">
+    <script src="{% static 'js/traffic_main.js' %}"></script>
+    <script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
 {% endblock extra_head %}
 
 {% block content %}
-<h1>Traffic Controller</h1>
+    <h1>Traffic Controller</h1>
+    <div>
+        <canvas id="demoCanvas" width="640" height="360"></canvas>
+        <button id="clearCanvas">Clear Canvas</button>
+    </div>
 {% endblock content %}

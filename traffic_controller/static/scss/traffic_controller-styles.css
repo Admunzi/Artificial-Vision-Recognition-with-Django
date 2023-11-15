@@ -1,1 +1,9 @@
-/*# sourceMappingURL=traffic_controller-styles.css.map */
+div {
+  display: flex;
+  flex-direction: column;
+  background-color: #C4DAE3;
+  align-items: flex-start;
+}
+div #demoCanvas {
+  background-color: white;
+}/*# sourceMappingURL=traffic_controller-styles.css.map */
