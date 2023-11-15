@@ -126,10 +126,10 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "static"),
-    os.path.join(BASE_DIR, "recog_obj", "static"),
-    os.path.join(BASE_DIR, "recognition", "static"),
-    os.path.join(BASE_DIR, "traffic_controller", "static"),
+    ("base", os.path.join(BASE_DIR, "static")),
+    ("recog_obj", os.path.join(BASE_DIR, "recog_obj", "static")),
+    ("recognition", os.path.join(BASE_DIR, "recognition", "static")),
+    ("traffic_controller", os.path.join(BASE_DIR, "traffic_controller", "static")),
 )
 
 # Default primary key field type

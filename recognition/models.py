@@ -6,7 +6,7 @@ import os
 # Create your models here.
 class Video(models.Model):
     title = models.CharField(max_length=100)
-    video_file = models.FileField(upload_to='recognition/static/media_saved/videos')
+    video_file = models.FileField(upload_to='static/media_saved/videos')
     filename = models.CharField(max_length=255, default='', editable=False)
     
     def save(self, *args, **kwargs):

@@ -48,7 +48,7 @@ def save_frames(all_frames, id):
     all_frames_json = json.dumps(all_frames)
 
     # Define the file path to save the JSON file
-    file_path = f'recognition/static/media_saved/json/detected_{id}.json'
+    file_path = f'static/media_saved/json/detected_{id}.json'
 
     # Write the JSON data to the file
     with open(file_path, 'w') as file:
