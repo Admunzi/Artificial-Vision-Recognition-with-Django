@@ -5,15 +5,33 @@
 {% block title %}traffic_controller{% endblock title %}
 
 {% block extra_head %}
-    <link rel='stylesheet' href="{% static 'scss/traffic_controller-styles.css' %}">
-    <script src="{% static 'js/traffic_main.js' %}"></script>
+    <link rel='stylesheet' href="{% static 'traffic_controller/scss/traffic_controller-styles.css' %}">
+    <script src="{% static 'traffic_controller/js/traffic_main.js' %}"></script>
     <script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
 {% endblock extra_head %}
 
 {% block content %}
-    <h1>Traffic Controller</h1>
-    <div>
-        <canvas id="demoCanvas" width="640" height="360"></canvas>
-        <button id="clearCanvas">Clear Canvas</button>
+    <div id="top">
+        <div>
+            <canvas id="canvasToDraw" width="640" height="360"></canvas>
+            <button id="clearCanvas">Clear Canvas</button>
+            <img id="video-frame" width="640" height="360" alt="Video Frame">
+        </div>
+        <div>
+            <h2>Videos Detected</h2>
+            <div id="VideosDetectedContainer">
+                {% for detected in detected_objs %}
+                    <div>
+                        {{ detected.title }}
+                        <video width="120">
+                            <source src="{{ 'media/videos/'|add:detected.filename|safe }}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <span style="display:none">{{ detected.pk }}</span>
+                    </div>
+                {% endfor %}
+            </div>
+
+        </div>
     </div>
 {% endblock content %}

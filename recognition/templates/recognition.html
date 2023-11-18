@@ -3,21 +3,21 @@
 {% block title %}Recognition Objects{% endblock title %}
 
 {% block extra_head %}
-    <link rel='stylesheet' href="{% static 'scss/recognition-styles.css' %}">
-    <script src="{% static 'js/recognition-main.js' %}"></script>
+    <link rel='stylesheet' href="{% static 'recognition/scss/recognition-styles.css' %}">
+    <script src="{% static 'recognition/js/recognition-main.js' %}"></script>
 {% endblock extra_head %}
 
 {% block content %}
 <div id="top">
     <div>
-        <video id="myVideo" width="640" height="360" muted>
-            <source src="{% static 'base/media_saved/videos/cars-1.mp4' %}" type="video/mp4">
+        <video id="myVideo" width="640" height="360" muted autoplay loop>
+            <source src='media/videos/loading.mp4' type="video/mp4">
             Your browser does not support the video tag.
         </video>
         <canvas id="myCanvas" width="640" height="360"></canvas>
         <div>
             <input type="range" id="rangeInput" min="0" max="100" step="1" value="0">
-            <img id="playOrStopVideo" src="{% static 'imgs/play_pause.png' %}" alt="Descripción de la imagen">
+            <img id="playOrStopVideo" src="{% static 'recognition/imgs/play_pause.png' %}" alt="Descripción de la imagen">
         </div>
     </div>
     <div>
@@ -35,14 +35,14 @@
             <h2>Videos Detected</h2>
             <div id="VideosDetectedContainer">
                 {% for detected in detected_objs %}
-                <div>
-                    {{ detected.title }}
-                    <video width="120">
-                        <source src="{% static 'base/media_saved/videos/'|add:detected.filename|safe %}" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                    <span style="display:none">{{ detected.pk }}</span>
-                </div>
+                    <div>
+                        {{ detected.title }}
+                        <video width="120">
+                            <source src="{{ 'media/videos/'|add:detected.filename|safe }}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <span style="display:none">{{ detected.pk }}</span>
+                    </div>
                 {% endfor %}
             </div>
         </div>

@@ -32,7 +32,7 @@ $(document).ready(function(){
     */
     function addDetections(idVideo) {
         // Load JSON data containing video detections
-        $.getJSON(`static/base/media_saved/json/detected_${idVideo}.json`, function(data) {
+        $.getJSON(`media/json/detected_${idVideo}.json`, function(data) {
             // Get frames per second (fps) from the detected video
             let fps = data[0];
             data = data.slice(1);
